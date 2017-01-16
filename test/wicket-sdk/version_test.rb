@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class Wicket::VersionTest < Minitest::Test
+class WicketSDK::VersionTest < Minitest::Test
   def test_that_it_has_a_version_number
-    refute_nil ::Wicket::SDK::VERSION
+    refute_nil ::WicketSDK::VERSION
   end
 end

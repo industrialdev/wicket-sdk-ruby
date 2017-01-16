@@ -1,4 +1,4 @@
-# Wicket::SDK
+# WicketSDK
 
 
 ## Installation

@@ -1,5 +1,3 @@
-module Wicket
-  module SDK
-    VERSION = '0.1.0'.freeze
-  end
+module WicketSDK
+  VERSION = '0.1.0'.freeze
 end
