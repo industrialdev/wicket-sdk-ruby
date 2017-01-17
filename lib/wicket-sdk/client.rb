@@ -37,6 +37,14 @@ module WicketSDK
       end
     end
 
+    def alive
+      connection.run(:head, '/').status
+    end
+
+    def alive?
+      alive == 200
+    end
+
     private
 
     def reset_connection
