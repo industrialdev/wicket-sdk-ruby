@@ -1,12 +1,27 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "pry"
-require "wicket-sdk"
+require 'bundler/setup'
+require 'pry'
+require 'wicket-sdk'
 
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
+def sdk
+  @sdk ||= WicketSDK::Client.new(
+    # Disable cert verification if the wicket api has a self-signed cert.
+    # :connection_options => {:ssl => {:verify => false}},
 
-# (If you use this, don't forget to add pry to your Gemfile!)
-# require "pry"
-Pry.start
+    # Support self-signed cert *and* set longer timeout to allow for long running queries.
+    connection_options: { ssl: { verify: false } },
+    api_endpoint: 'http://localhost:3000',
+
+    # Customize to use your specific wicket instance
+    # connection_options: { ssl: { verify: true } },
+    # api_endpoint: 'https://api.wicket.io',
+  )
+end
+
+begin
+  puts "Connecting to Wicket at '#{sdk.api_endpoint}'. use sdk.authorize_person(uuid) to start communicating with the api."
+  Pry.start
+rescue Exception => e
+  puts e
+end
