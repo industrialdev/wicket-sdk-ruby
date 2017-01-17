@@ -14,13 +14,29 @@ module WicketSDK
       # Configuration options
       # @return [Hash]
       def options
-        Hash[WicketSDK::Configurable.keys.map{|key| [key, send(key)]}]
+        Hash[
+          WicketSDK::Configurable.keys.map do |key|
+            [key, send(key)]
+          end
+        ]
       end
 
       # Default access token from ENV
       # @return [String]
       def access_token
         ENV['WICKET_ACCESS_TOKEN']
+      end
+
+      # Default API app key from ENV
+      # @return [String]
+      def client_id
+        ENV['WICKET_CLIENT_ID']
+      end
+
+      # Default API app secret from ENV
+      # @return [String]
+      def client_secret
+        ENV['WICKET_CLIENT_SECRET']
       end
 
       # Default API endpoint from ENV or {API_ENDPOINT}

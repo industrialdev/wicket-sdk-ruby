@@ -2,7 +2,7 @@ require 'wicket-sdk/connection'
 require 'wicket-sdk/configurable'
 require 'wicket-sdk/default'
 require 'wicket-sdk/authentication'
-
+require 'wicket-sdk/warnable'
 
 module WicketSDK
   # Client for the Wicket API
@@ -10,6 +10,7 @@ module WicketSDK
   # @see TODO: API_DOCS_URL
   class Client
     include WicketSDK::Configurable
+    include WicketSDK::Warnable
     include WicketSDK::Authentication
 
     def initialize(options = {})

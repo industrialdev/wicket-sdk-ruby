@@ -1,8 +1,10 @@
 require 'wicket-sdk/configurable'
 require 'wicket-sdk/default'
 
+require 'wicket-sdk/version' unless defined? WicketSDK::VERSION
+
+# Ruby SDK for the Wicket API
 module WicketSDK
-  autoload :VERSION, 'wicket-sdk/version'
   autoload :Client, 'wicket-sdk/client'
 
   class << self

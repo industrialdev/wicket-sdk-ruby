@@ -2,16 +2,19 @@ module WicketSDK
   # Configuration options for {Client}, defaulting to values
   # in {Default}
   module Configurable
-    attr_accessor :access_token, :connection_options, :user_agent
+    attr_accessor :access_token, :connection_options, :user_agent,
+                  :client_id, :client_secret
+
     attr_writer :api_endpoint
 
     class << self
-
       # List of configurable keys for {WicketSDK::Client}
       # @return [Array] of option keys
       def keys
         @keys ||= [
           :access_token,
+          :client_id,
+          :client_secret,
           :connection_options,
           :user_agent,
           :api_endpoint
@@ -49,7 +52,11 @@ module WicketSDK
     private
 
     def options
-      Hash[WicketSDK::Configurable.keys.map{ |key| [key, instance_variable_get(:"@#{key}")]}]
+      Hash[
+        WicketSDK::Configurable.keys.map do |key|
+          [key, instance_variable_get(:"@#{key}")]
+        end
+      ]
     end
   end
 end
