@@ -3,6 +3,7 @@ require 'wicket-sdk/configurable'
 require 'wicket-sdk/default'
 require 'wicket-sdk/authentication'
 require 'wicket-sdk/warnable'
+require 'wicket-sdk/resource_endpoint'
 
 module WicketSDK
   # Client for the Wicket API
@@ -43,6 +44,14 @@ module WicketSDK
 
     def alive?
       alive == 200
+    end
+
+    def people
+      ResourceEndpoint.new(self, '/people')
+    end
+
+    def organizations
+      ResourceEndpoint.new(self, '/people')
     end
 
     private
