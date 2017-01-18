@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class WicketSDK::VersionTest < Minitest::Test
-  def test_that_it_has_a_version_number
+  it 'has a valid version number' do
     refute_nil ::WicketSDK::VERSION
   end
 end
