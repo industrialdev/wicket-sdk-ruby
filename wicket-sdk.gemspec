@@ -39,4 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'pry-byebug'
   spec.add_development_dependency 'jwt', '~> 1.5'
+
+  spec.add_development_dependency 'guard', '~> 2.14'
+  spec.add_development_dependency 'guard-minitest', '~> 2.4'
 end
