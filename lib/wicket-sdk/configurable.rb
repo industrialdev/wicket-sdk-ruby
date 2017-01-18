@@ -3,7 +3,7 @@ module WicketSDK
   # in {Default}
   module Configurable
     attr_accessor :access_token, :connection_options, :user_agent,
-                  :client_id, :client_secret
+                  :client_id, :client_secret, :resource_class_mappings
 
     attr_writer :api_endpoint
 
@@ -17,7 +17,8 @@ module WicketSDK
           :client_secret,
           :connection_options,
           :user_agent,
-          :api_endpoint
+          :api_endpoint,
+          :resource_class_mappings
         ]
       end
     end

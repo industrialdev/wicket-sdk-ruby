@@ -10,6 +10,11 @@ module WicketSDK
     # Default User Agent header string
     USER_AGENT = "wicket-sdk-ruby/#{WicketSDK::VERSION}".freeze
 
+    # Mapping of resource type keys to resource classes, can be used
+    # for custom helper methods on resources.
+    RESOURCE_CLASS_MAPPINGS = {
+    }.freeze
+
     class << self
       # Configuration options
       # @return [Hash]
@@ -59,6 +64,10 @@ module WicketSDK
             user_agent: user_agent
           }
         }
+      end
+
+      def resource_class_mappings
+        RESOURCE_CLASS_MAPPINGS
       end
     end
   end

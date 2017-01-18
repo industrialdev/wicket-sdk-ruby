@@ -6,6 +6,8 @@ require 'wicket-sdk/version' unless defined? WicketSDK::VERSION
 # Ruby SDK for the Wicket API
 module WicketSDK
   autoload :Client, 'wicket-sdk/client'
+  autoload :Resource, 'wicket-sdk/resource'
+  autoload :ResultSet, 'wicket-sdk/result_set'
 
   class << self
     include WicketSDK::Configurable

@@ -13,9 +13,9 @@ module WicketSDK
                    :select, :detect, :reduce,
                    :first, :last
 
-    def initialize(document_hash = nil, link_resource_data = true)
+    def initialize(resource_class_mappings = {})
       @ready = false
-      parse!(document_hash, link_resource_data) if document_hash
+      @resource_class_mappings = resource_class_mappings || {}
     end
 
     def parse!(document, link_resource_data = true)
@@ -28,6 +28,8 @@ module WicketSDK
       parse_links!(document['links'])
       parse_meta!(document['meta'])
       @ready = true
+
+      self
     end
 
     private
@@ -81,9 +83,13 @@ module WicketSDK
     end
 
     def resource_from_hash(data)
-      r = Resource.new(data)
+      r = resource_class_for(data['type']).new(data)
       r.last_result_set = self
       r
+    end
+
+    def resource_class_for(type)
+      @resource_class_mappings[type] || @resource_class_mappings[type.to_sym] || Resource
     end
 
     def ensure_array

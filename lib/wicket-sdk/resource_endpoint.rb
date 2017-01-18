@@ -22,7 +22,7 @@ module WicketSDK
     end
 
     def parse_result_set(response)
-      ResultSet.new.tap do |rs|
+      ResultSet.new(@client.resource_class_mappings).tap do |rs|
         # Support for async faraday requests
         response.on_complete do
           rs.parse!(response.body || {})
