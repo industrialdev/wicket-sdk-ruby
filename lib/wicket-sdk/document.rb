@@ -1,9 +1,10 @@
 require 'forwardable'
 require 'jsonapi/parser'
 require 'wicket-sdk/resource'
+require 'wicket-sdk/error'
 
 module WicketSDK
-  class ResultSet
+  class Document
     extend Forwardable
 
     attr_reader :data, :included, :errors, :links, :meta, :ready
@@ -30,6 +31,8 @@ module WicketSDK
       @ready = true
 
       self
+    rescue JSONAPI::Parser::InvalidDocument => e
+      raise WicketSDK::InvalidDocument, e.message
     end
 
     private
@@ -84,7 +87,7 @@ module WicketSDK
 
     def resource_from_hash(data)
       r = resource_class_for(data['type']).new(data)
-      r.last_result_set = self
+      r.current_document = self
       r
     end
 

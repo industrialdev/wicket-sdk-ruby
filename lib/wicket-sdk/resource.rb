@@ -2,7 +2,7 @@ require 'wicket-sdk/relationship'
 
 module WicketSDK
   class Resource
-    attr_accessor :last_result_set
+    attr_accessor :current_document
     attr_reader :id, :type, :attributes, :relationships, :links, :meta
 
     def initialize(resource)

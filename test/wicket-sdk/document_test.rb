@@ -1,10 +1,6 @@
 require 'test_helper'
 
-class WicketSDK::ResultSetTest < Minitest::Test
-  # def test_it_can_map_resource_types_to_custom_classes
-    # assert false
-  # end
-
+class WicketSDK::DocumentTest < Minitest::Test
   class CustomResourceB < ::WicketSDK::Resource
   end
 
@@ -17,7 +13,7 @@ class WicketSDK::ResultSetTest < Minitest::Test
       resource_c: CustomResourceC
     }.freeze
 
-    rs = ::WicketSDK::ResultSet.new(MAPPING).parse!(
+    rs = ::WicketSDK::Document.new(MAPPING).parse!(
       'data' => [
         { 'type' => 'resource_a', 'id' => 1, 'attributes' => {} },
         { 'type' => 'resource_b', 'id' => 1, 'attributes' => {} },
@@ -28,5 +24,11 @@ class WicketSDK::ResultSetTest < Minitest::Test
     assert_equal rs.data[0].class, ::WicketSDK::Resource
     assert_equal rs.data[1].class, CustomResourceB
     assert_equal rs.data[2].class, CustomResourceC
+  end
+
+  it 'wraps the JSONAPI::Parser invalid document exception' do
+    assert_raises WicketSDK::InvalidDocument do
+      ::WicketSDK::Document.new.parse!({})
+    end
   end
 end

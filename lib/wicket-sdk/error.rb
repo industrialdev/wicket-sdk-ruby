@@ -111,6 +111,9 @@ module WicketSDK
   # Raised when a connection could not be established with the Wicket API.
   class ConnectionError < Error; end
 
+  # Raied when a JSON api document could not be parsed
+  class InvalidDocument < Error; end
+
   # Raised on errors in the 400-499 range
   class ClientError < ApiError; end
 

@@ -1,4 +1,4 @@
-require 'wicket-sdk/result_set'
+require 'wicket-sdk/document'
 
 module WicketSDK
   class ResourceEndpoint
@@ -18,11 +18,11 @@ module WicketSDK
     protected
 
     def jsonapi_request(*args)
-      parse_result_set @client.connection.run(*args)
+      document_from_response @client.connection.run(*args)
     end
 
-    def parse_result_set(response)
-      ResultSet.new(@client.resource_class_mappings).tap do |rs|
+    def document_from_response(response)
+      Document.new(@client.resource_class_mappings).tap do |rs|
         # Support for async faraday requests
         response.on_complete do
           rs.parse!(response.body || {})

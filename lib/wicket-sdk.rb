@@ -7,7 +7,7 @@ require 'wicket-sdk/version' unless defined? WicketSDK::VERSION
 module WicketSDK
   autoload :Client, 'wicket-sdk/client'
   autoload :Resource, 'wicket-sdk/resource'
-  autoload :ResultSet, 'wicket-sdk/result_set'
+  autoload :Document, 'wicket-sdk/document'
 
   class << self
     include WicketSDK::Configurable
