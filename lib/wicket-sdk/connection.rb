@@ -2,6 +2,7 @@ require 'faraday'
 
 require 'wicket-sdk/middleware/encode_json_api'
 require 'wicket-sdk/middleware/parse_json'
+require 'wicket-sdk/middleware/raise_error'
 
 module WicketSDK
   class Connection
@@ -17,6 +18,7 @@ module WicketSDK
 
       @faraday = Faraday.new(endpoint, connection_options) do |builder|
         builder.use Middleware::EncodeJsonApi
+        builder.use Middleware::RaiseError
         builder.use Middleware::ParseJson
 
         builder.adapter(*adapter_options)

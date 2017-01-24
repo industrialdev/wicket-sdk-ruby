@@ -42,4 +42,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'guard', '~> 2.14'
   spec.add_development_dependency 'guard-minitest', '~> 2.4'
+  spec.add_development_dependency 'webmock', '~> 2.3'
 end
