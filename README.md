@@ -1,4 +1,4 @@
-# WicketSDK
+# WicketSDK [![CircleCI](https://circleci.com/gh/industrialdev/wicket-sdk-ruby.svg?style=svg)](https://circleci.com/gh/industrialdev/wicket-sdk-ruby)
 
 
 ## Installation
