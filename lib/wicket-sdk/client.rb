@@ -51,7 +51,7 @@ module WicketSDK
     end
 
     def organizations
-      ResourceEndpoint.new(self, '/people')
+      ResourceEndpoint.new(self, '/organizations')
     end
 
     private
