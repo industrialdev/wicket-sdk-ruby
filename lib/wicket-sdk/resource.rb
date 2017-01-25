@@ -10,7 +10,7 @@ module WicketSDK
       @type = resource['type']
       @attributes = resource['attributes'] || {}
       @meta = resource['meta']
-      @linsk = resource['links']
+      @links = resource['links']
 
       parse_relationships!(resource['relationships'])
     end
