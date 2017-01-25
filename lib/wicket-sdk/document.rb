@@ -2,6 +2,7 @@ require 'forwardable'
 require 'jsonapi/parser'
 require 'wicket-sdk/resource'
 require 'wicket-sdk/error'
+require 'wicket-sdk/resource_collection'
 
 module WicketSDK
   class Document
@@ -9,10 +10,7 @@ module WicketSDK
 
     attr_reader :data, :included, :errors, :links, :meta, :ready
 
-    def_delegators :ensure_array,
-                   :[], :each, :size, :map,
-                   :select, :detect, :reduce,
-                   :first, :last
+    delegate ResourceCollection::COLLECTION_METHODS => :resource_collection
 
     def initialize(resource_class_mappings = {})
       @ready = false
@@ -95,10 +93,8 @@ module WicketSDK
       @resource_class_mappings[type] || @resource_class_mappings[type.to_sym] || Resource
     end
 
-    def ensure_array
-      data = @data
-      data = [data] unless data.is_a?(Array)
-      data
+    def resource_collection
+      ResourceCollection.new(@data)
     end
   end
 end

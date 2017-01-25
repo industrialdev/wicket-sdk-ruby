@@ -1,11 +1,12 @@
 require 'forwardable'
+require 'wicket-sdk/resource_collection'
 
 module WicketSDK
   class Relationship
     extend Forwardable
     attr_reader :data, :links, :meta
 
-    def_delegators :ensure_array, :[], :each, :size, :map, :select, :detect, :reduce
+    delegate ResourceCollection::COLLECTION_METHODS => :resource_collection
 
     def initialize(relationship)
       @data = relationship['data']
@@ -36,10 +37,8 @@ module WicketSDK
 
     private
 
-    def ensure_array
-      data = @data
-      data = [data] unless data.is_a?(Array)
-      data
+    def resource_collection
+      ResourceCollection.new(@data)
     end
   end
 end
