@@ -9,7 +9,7 @@ module WicketSDK
     delegate ResourceCollection::COLLECTION_METHODS => :resource_collection
 
     def initialize(relationship)
-      @data = relationship['data']
+      @data = parse_data!(relationship['data'])
       @links = relationship['links']
       @meta = relationship['meta']
     end
@@ -26,16 +26,25 @@ module WicketSDK
     def link_resource_data!(resource_index)
       if many?
         @data.map! do |ri|
-          ri = [ri['type'], ri['id']]
-          resource_index[ri]
+          resource_index[ri.as_tuple] || ri
         end
       elsif !@data.nil?
-        ri = [@data['type'], @data['id']]
-        @data = resource_index[ri]
+        @data = resource_index[@data.as_tuple] || @data
       end
     end
 
     private
+
+    def parse_data!(data)
+      return unless data
+
+      @data =
+        if data.is_a?(Array)
+          data.map { |h| ResourceIdentifier.new(h) }
+        else
+          ResourceIdentifier.new(data)
+        end
+    end
 
     def resource_collection
       ResourceCollection.new(@data)
