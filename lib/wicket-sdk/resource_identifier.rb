@@ -21,6 +21,10 @@ module WicketSDK
     end
 
     def ==(other)
+      if other.respond_to? :jsonapi_resource_identifier
+        other = other.jsonapi_resource_identifier
+      end
+
       return false if !other
       return false unless other.respond_to?(:type) && other.respond_to?(:id)
 
