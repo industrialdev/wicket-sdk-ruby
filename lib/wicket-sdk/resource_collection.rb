@@ -8,7 +8,7 @@ module WicketSDK
     ].freeze
 
     def initialize(data = [])
-      data = [data].compact! unless data.is_a?(Array)
+      data = [data].compact unless data.is_a?(Array)
       super(data)
     end
 
@@ -22,7 +22,7 @@ module WicketSDK
           type = type.to_s
 
           select do |res|
-            if res.is_a? Resource
+            if res.is_a? ResourceIdentifier
               res.type == type
             else
               res['type'] == type
