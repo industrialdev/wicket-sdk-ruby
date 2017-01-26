@@ -1,29 +1,33 @@
 require 'wicket-sdk/relationship'
+require 'wicket-sdk/resource_identifier'
 
 module WicketSDK
-  class Resource
+  class Resource < ResourceIdentifier
     attr_accessor :current_document
-    attr_reader :id, :type, :attributes, :relationships, :links, :meta
+    attr_reader :attributes, :relationships, :links
 
     def initialize(resource)
-      @id = resource['id']
-      @type = resource['type']
+      super
+
       @attributes = resource['attributes'] || {}
-      @meta = resource['meta']
       @links = resource['links']
 
       parse_relationships!(resource['relationships'])
     end
 
-    def [](attr)
-      return nil unless attr
+    def [](attribute_name)
+      return nil unless attribute_name
 
-      attributes[attr.to_s]
+      attributes[attribute_name.to_s]
     end
 
-    def relationship(name)
-      return nil unless name
-      relationships[name.to_s]
+    def relationship(relationship_name)
+      return nil unless relationship_name
+      relationships[relationship_name.to_s]
+    end
+
+    def resource?
+      true
     end
 
     private
