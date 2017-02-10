@@ -3,7 +3,7 @@ require 'wicket-sdk/configurable'
 require 'wicket-sdk/default'
 require 'wicket-sdk/authentication'
 require 'wicket-sdk/warnable'
-require 'wicket-sdk/resource_endpoint'
+require 'wicket-sdk/query_builder'
 
 module WicketSDK
   # Client for the Wicket API
@@ -47,11 +47,11 @@ module WicketSDK
     end
 
     def people
-      ResourceEndpoint.new(self, '/people')
+      QueryBuilder.new(self, '/people')
     end
 
     def organizations
-      ResourceEndpoint.new(self, '/organizations')
+      QueryBuilder.new(self, '/organizations')
     end
 
     private

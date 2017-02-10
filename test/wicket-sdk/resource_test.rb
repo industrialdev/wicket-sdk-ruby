@@ -16,7 +16,6 @@ class WicketSDK::ResourceTest < Minitest::Test
   end
 
   describe 'attributes' do
-
     it 'defaults to empty hash when no attributes specified' do
       res1 = WicketSDK::Resource.new(
         'type' => 'email', 'id' => '1234'
