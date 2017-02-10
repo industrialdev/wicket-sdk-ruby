@@ -23,6 +23,13 @@ module WicketSDK
     end
 
     # Set pagination settings
+    #
+    # @example set page to 10
+    #   WicketSDK::QueryBuilder.new(client, route).page(10)
+    #
+    # @example set page and size
+    #   WicketSDK::QueryBuilder.new(client, route).page(2, 25)
+    #
     # @return [WicketSDK::QueryBuilder] self for fluent queries
     def page(number, size = nil)
       @query_params[:page][:number] = number
@@ -30,23 +37,51 @@ module WicketSDK
       self
     end
 
-    # Set pagination settings
+    # Set JSONAPI includes
+    #
+    # @example include side loaded resource
+    #   WicketSDK::QueryBuilder.new(client, route).includes(:people)
+    #
+    # @example include nested resource
+    #   WicketSDK::QueryBuilder.new(client, route).includes('people.addresses')
+    #
     # @return [WicketSDK::QueryBuilder] self for fluent queries
     def includes(*args)
       @query_params[:include] += args
       self
     end
 
+    # Set JSONAPI sparse fields
+    #
+    # @example limit fields being returned by resource
+    #   WicketSDK::QueryBuilder.new(client, route).fields(
+    #     people: :first_name,
+    #     addresses: [:state_name, :province_code]
+    #   )
+    #
+    # @return [WicketSDK::QueryBuilder] self for fluent queries
     def fields(*args)
       @query_params[:fields] += args
       self
     end
 
+    # Set Wicket specific filters
+    #
+    # @example filter response results
+    #   WicketSDK::QueryBuilder.new(client, route).filter(age_gt: 21)
+    #
+    # @return [WicketSDK::QueryBuilder] self for fluent queries
     def filter(filters = {})
       @query_params[:filter].merge!(filters)
       self
     end
 
+    # Set JSONAPI sort settings.
+    #
+    # @example sort by multiple fields / directions
+    #   WicketSDK::QueryBuilder.new(client, route).sort(:created_at, number: :desc)
+    #
+    # @return [WicketSDK::QueryBuilder] self for fluent queries
     def sort(*args)
       @query_params[:sort] += args
       self
