@@ -7,6 +7,10 @@ class WicketSDK::QueryBuilderTest < Minitest::Test
     @query = WicketSDK::QueryBuilder.new(nil, 'path')
   end
 
+  it 'can make a get request to find all resources' do
+    assert_equal 'someting', query.all
+  end
+
   it 'can set page details' do
     expected = { page: { number: 2 } }
     assert_equal expected, query.page(2).to_params
