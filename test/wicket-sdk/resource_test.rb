@@ -4,12 +4,12 @@ require 'pry'
 class WicketSDK::ResourceTest < Minitest::Test
   def setup
     @sample_resource = WicketSDK::Resource.new(
-                         'type' => 'email',
-                         'id' => '1234',
-                         'attributes' => {
-                           'address' => 'foo@bar.com'
-                         }
-                       )
+      'type' => 'email',
+      'id' => '1234',
+      'attributes' => {
+        'address' => 'foo@bar.com'
+      }
+    )
   end
 
   it 'is also a resource identifier' do
