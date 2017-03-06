@@ -62,4 +62,16 @@ class WicketSDK::QueryBuilderTest < Minitest::Test
 
     assert_equal expected, query.to_params
   end
+
+  # it 'can save' do
+  #   sample_resource = WicketSDK::Resource.new(
+  #     'type' => 'email',
+  #     'id' => '1234',
+  #     'attributes' => {
+  #       'address' => 'foo@bar.com'
+  #     }
+  #   )
+
+  #   WicketSDK::QueryBuilder.new()
+  # end
 end

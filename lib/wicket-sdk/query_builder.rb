@@ -22,6 +22,11 @@ module WicketSDK
       jsonapi_request(:get, "#{@route}/#{resource_id}", to_params)
     end
 
+    # sdk.addresses.save(org.data.addresses.primary.first)
+    def save(resource)
+      jsonapi_request(:patch, "#{@route}/#{resource.id}", "data"=> resource.to_json)
+    end
+
     # Set pagination settings
     #
     # @example set page to 10

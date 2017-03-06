@@ -54,6 +54,14 @@ module WicketSDK
       QueryBuilder.new(self, '/organizations')
     end
 
+    def addresses
+      QueryBuilder.new(self, '/addresses')
+    end
+
+    def phones
+      QueryBuilder.new(self, '/phones')
+    end
+
     private
 
     def reset_connection

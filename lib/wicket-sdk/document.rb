@@ -33,7 +33,7 @@ module WicketSDK
       raise WicketSDK::InvalidDocument, e.message
     end
 
-    private
+  private
 
     def parse_data!(data, included_data)
       return unless data

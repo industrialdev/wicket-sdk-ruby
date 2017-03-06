@@ -30,7 +30,15 @@ module WicketSDK
       true
     end
 
-    private
+    def to_json
+      {
+        "type" => self.type,
+        "id" => self.id,
+        "attributes" => self.attributes
+      }
+    end
+
+  private
 
     def parse_relationships!(relationships)
       @relationships = {}
