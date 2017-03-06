@@ -23,8 +23,12 @@ module WicketSDK
     end
 
     # Pass in your resource.data.to_json
-    def save(json_resource)
+    def update(json_resource)
       jsonapi_request(:patch, "#{@route}/#{json_resource['id']}", "data"=> json_resource)
+    end
+
+    def create(json_resource)
+      jsonapi_request(:post, "#{@route}", "data"=> json_resource)
     end
 
     # Set pagination settings

@@ -58,6 +58,10 @@ module WicketSDK
       QueryBuilder.new(self, '/addresses')
     end
 
+    def organization_addresses(uuid)
+      QueryBuilder.new(self, "/organizations/#{uuid}/addresses")
+    end
+
     def phones
       QueryBuilder.new(self, '/phones')
     end
