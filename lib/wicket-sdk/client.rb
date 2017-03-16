@@ -66,6 +66,10 @@ module WicketSDK
       QueryBuilder.new(self, '/phones')
     end
 
+    def touchpoints
+      QueryBuilder.new(self, '/touchpoints')
+    end
+
     private
 
     def reset_connection
